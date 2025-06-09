@@ -1,0 +1,12 @@
+{
+  "UniqueModName": "ARZUMATA_ColorTuner",
+  "Assemblies": [
+      "QM_ColorTuner.dll"
+  ],
+  "Dependencies": [],
+  "SteamTags": [
+    "0.9.1",
+    "0.9",
+    "Quality of Life"
+  ]
+}
