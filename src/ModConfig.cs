@@ -23,7 +23,7 @@ namespace QM_ColorBlindHelper
         public bool DebugLog { get; set; } = false;
 
         [JsonIgnore]
-        public bool EnableColorBlindAssist { get; set; } = true;
+        public bool EnableColorTuner { get; set; } = true;
 
         [JsonIgnore]
         public int UpdateRate { get; set; } = 60;
@@ -68,7 +68,7 @@ namespace QM_ColorBlindHelper
         public float BlueOutBlueIn { get; set; } = 0f;
 
         [JsonIgnore]
-        public int ColorBlindnessIndex { get; set; } = 0;
+        public int ColorBlindIndex { get; set; } = 0;
 
 
         // MCM Related Start

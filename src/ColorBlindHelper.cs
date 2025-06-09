@@ -11,104 +11,26 @@ namespace QM_ColorBlindHelper
     internal class ColorBlindHelper
     {
 
-        public static ChannelMixer channelMixer = new ChannelMixer();
-        public static ColorAdjustments colorAdjustments = new ColorAdjustments();
-        public static ColorAdjustments colorAdjustmentsValues;
-
-        public static bool AreEqual(ChannelMixer a, ChannelMixer b)
-        {
-            return (a.redOutRedIn.value == b.redOutRedIn.value &&
-                    a.redOutGreenIn.value == b.redOutGreenIn.value &&
-                    a.redOutBlueIn.value == b.redOutBlueIn.value &&
-
-                    a.greenOutRedIn.value == b.greenOutRedIn.value &&
-                    a.greenOutGreenIn.value == b.greenOutGreenIn.value &&
-                    a.greenOutBlueIn.value == b.greenOutBlueIn.value &&
-
-                    a.blueOutRedIn.value == b.blueOutRedIn.value &&
-                    a.blueOutGreenIn.value == b.blueOutGreenIn.value &&
-                    a.blueOutBlueIn.value == b.blueOutBlueIn.value &&
-                    
-                    a.redOutRedIn.overrideState == b.redOutRedIn.overrideState &&
-                    a.redOutGreenIn.overrideState == b.redOutGreenIn.overrideState &&
-                    a.redOutBlueIn.overrideState == b.redOutBlueIn.overrideState &&
-
-                    a.greenOutRedIn.overrideState == b.greenOutRedIn.overrideState &&
-                    a.greenOutGreenIn.overrideState == b.greenOutGreenIn.overrideState &&
-                    a.greenOutBlueIn.overrideState == b.greenOutBlueIn.overrideState &&
-                    
-                    a.blueOutRedIn.overrideState == b.blueOutRedIn.overrideState &&
-                    a.blueOutGreenIn.overrideState == b.blueOutGreenIn.overrideState &&
-                    a.blueOutBlueIn.overrideState == b.blueOutBlueIn.overrideState
-                    );
-        }
-
-        public static bool AreEqual(ColorAdjustments a, ColorAdjustments b)
-        {
-            return (a.contrast.value == b.contrast.value &&
-                    a.saturation.value == b.saturation.value &&
-                    a.hueShift.value == b.hueShift.value &&
-                    a.postExposure.value == b.postExposure.value &&
-
-                    a.contrast.overrideState == b.contrast.overrideState &&
-                    a.saturation.overrideState == b.saturation.overrideState &&
-                    a.hueShift.overrideState == b.hueShift.overrideState &&
-                    a.postExposure.overrideState == b.postExposure.overrideState);
-        }
-        public static void CopyFrom(ChannelMixer source, ChannelMixer destination)
-        {
-            destination.redOutRedIn.value = source.redOutRedIn.value;
-            destination.redOutGreenIn.value = source.redOutGreenIn.value;
-            destination.redOutBlueIn.value = source.redOutBlueIn.value;
-
-            destination.greenOutRedIn.value = source.greenOutRedIn.value;
-            destination.greenOutGreenIn.value = source.greenOutGreenIn.value;
-            destination.greenOutBlueIn.value = source.greenOutBlueIn.value;
-
-            destination.blueOutRedIn.value = source.blueOutRedIn.value;
-            destination.blueOutGreenIn.value = source.blueOutGreenIn.value;
-            destination.blueOutBlueIn.value = source.blueOutBlueIn.value;
-
-            destination.redOutRedIn.overrideState = source.redOutRedIn.overrideState; 
-            destination.redOutGreenIn.overrideState = source.redOutGreenIn.overrideState; 
-            destination.redOutBlueIn.overrideState = source.redOutBlueIn.overrideState; 
-
-            destination.greenOutRedIn.overrideState = source.greenOutRedIn.overrideState; 
-            destination.greenOutGreenIn.overrideState = source.greenOutGreenIn.overrideState; 
-            destination.greenOutBlueIn.overrideState = source.greenOutBlueIn.overrideState; 
-
-            destination.blueOutRedIn.overrideState = source.blueOutRedIn.overrideState; 
-            destination.blueOutGreenIn.overrideState = source.blueOutGreenIn.overrideState; 
-            destination.blueOutBlueIn.overrideState = source.blueOutBlueIn.overrideState; 
-        }
-
-        public static void CopyFrom(ColorAdjustments source, ColorAdjustments destination)
-        {
-            destination.contrast.value = source.contrast.value;
-            destination.saturation.value = source.saturation.value;
-            destination.hueShift.value = source.hueShift.value;
-            destination.postExposure.value = source.postExposure.value;
-
-            destination.contrast.overrideState = source.contrast.overrideState;
-            destination.saturation.overrideState = source.saturation.overrideState;
-            destination.hueShift.overrideState = source.hueShift.overrideState;
-            destination.postExposure.overrideState = source.postExposure.overrideState;
-        }
+        //public static ChannelMixer channelMixerdata = new ChannelMixer();
+        //public static ColorAdjustments colorAdjustments = new ColorAdjustments();
+        public static ChannelMixerData channelMixerData = new ChannelMixerData();
+        public static ColorAdjustmentsData colorAdjustmentsData = new ColorAdjustmentsData();
+        //public static ColorAdjustments colorAdjustmentsValues;
 
         public static void ResetChannelMixer()
         {
             // Reset to identity matrix (no change)
-            channelMixer.redOutRedIn.value = 100f;
-            channelMixer.redOutGreenIn.value = 0f;
-            channelMixer.redOutBlueIn.value = 0f;
+            channelMixerData.redOutRedIn = 100f;
+            channelMixerData.redOutGreenIn = 0f;
+            channelMixerData.redOutBlueIn = 0f;
 
-            channelMixer.greenOutRedIn.value = 0f;
-            channelMixer.greenOutGreenIn.value = 100f;
-            channelMixer.greenOutBlueIn.value = 0f;
+            channelMixerData.greenOutRedIn = 0f;
+            channelMixerData.greenOutGreenIn = 100f;
+            channelMixerData.greenOutBlueIn = 0f;
 
-            channelMixer.blueOutRedIn.value = 0f;
-            channelMixer.blueOutGreenIn.value = 0f;
-            channelMixer.blueOutBlueIn.value = 100f;
+            channelMixerData.blueOutRedIn = 0f;
+            channelMixerData.blueOutGreenIn = 0f;
+            channelMixerData.blueOutBlueIn = 100f;
         }
 
         public static void ApplyNormalVision()
@@ -122,102 +44,102 @@ namespace QM_ColorBlindHelper
         {
             // Protanopia (Red-blind) - Missing L-cones
             // Transform matrix to simulate normal vision for protanopes
-            channelMixer.redOutRedIn.value = 56.667f;
-            channelMixer.redOutGreenIn.value = 43.333f;
-            channelMixer.redOutBlueIn.value = 0f;
+            channelMixerData.redOutRedIn = 56.667f;
+            channelMixerData.redOutGreenIn = 43.333f;
+            channelMixerData.redOutBlueIn = 0f;
 
-            channelMixer.greenOutRedIn.value = 55.833f;
-            channelMixer.greenOutGreenIn.value = 44.167f;
-            channelMixer.greenOutBlueIn.value = 0f;
+            channelMixerData.greenOutRedIn = 55.833f;
+            channelMixerData.greenOutGreenIn = 44.167f;
+            channelMixerData.greenOutBlueIn = 0f;
 
-            channelMixer.blueOutRedIn.value = 0f;
-            channelMixer.blueOutGreenIn.value = 24.167f;
-            channelMixer.blueOutBlueIn.value = 75.833f;
+            channelMixerData.blueOutRedIn = 0f;
+            channelMixerData.blueOutGreenIn = 24.167f;
+            channelMixerData.blueOutBlueIn = 75.833f;
         }
 
         public static void ApplyDeuteranopiaCorrection()
         {
             // Deuteranopia (Green-blind) - Missing M-cones
             // Transform matrix to simulate normal vision for deuteranopes
-            channelMixer.redOutRedIn.value = 62.5f;
-            channelMixer.redOutGreenIn.value = 37.5f;
-            channelMixer.redOutBlueIn.value = 0f;
+            channelMixerData.redOutRedIn = 62.5f;
+            channelMixerData.redOutGreenIn = 37.5f;
+            channelMixerData.redOutBlueIn = 0f;
 
-            channelMixer.greenOutRedIn.value = 70f;
-            channelMixer.greenOutGreenIn.value = 30f;
-            channelMixer.greenOutBlueIn.value = 0f;
+            channelMixerData.greenOutRedIn = 70f;
+            channelMixerData.greenOutGreenIn = 30f;
+            channelMixerData.greenOutBlueIn = 0f;
 
-            channelMixer.blueOutRedIn.value = 0f;
-            channelMixer.blueOutGreenIn.value = 30f;
-            channelMixer.blueOutBlueIn.value = 70f;
+            channelMixerData.blueOutRedIn = 0f;
+            channelMixerData.blueOutGreenIn = 30f;
+            channelMixerData.blueOutBlueIn = 70f;
         }
 
         public static void ApplyTritanopiaCorrection()
         {
             // Tritanopia (Blue-blind) - Missing S-cones
             // Transform matrix to simulate normal vision for tritanopes
-            channelMixer.redOutRedIn.value = 95f;
-            channelMixer.redOutGreenIn.value = 5f;
-            channelMixer.redOutBlueIn.value = 0f;
+            channelMixerData.redOutRedIn = 95f;
+            channelMixerData.redOutGreenIn = 5f;
+            channelMixerData.redOutBlueIn = 0f;
 
-            channelMixer.greenOutRedIn.value = 0f;
-            channelMixer.greenOutGreenIn.value = 43.333f;
-            channelMixer.greenOutBlueIn.value = 56.667f;
+            channelMixerData.greenOutRedIn = 0f;
+            channelMixerData.greenOutGreenIn = 43.333f;
+            channelMixerData.greenOutBlueIn = 56.667f;
 
-            channelMixer.blueOutRedIn.value = 0f;
-            channelMixer.blueOutGreenIn.value = 47.5f;
-            channelMixer.blueOutBlueIn.value = 52.5f;
+            channelMixerData.blueOutRedIn = 0f;
+            channelMixerData.blueOutGreenIn = 47.5f;
+            channelMixerData.blueOutBlueIn = 52.5f;
         }
 
         public static void ApplyProtanomalyCorrection()
         {
             // Protanomaly (Weak red perception) - Anomalous L-cones
             // Milder correction than full protanopia
-            channelMixer.redOutRedIn.value = 80f;
-            channelMixer.redOutGreenIn.value = 20f;
-            channelMixer.redOutBlueIn.value = 0f;
+            channelMixerData.redOutRedIn = 80f;
+            channelMixerData.redOutGreenIn = 20f;
+            channelMixerData.redOutBlueIn = 0f;
 
-            channelMixer.greenOutRedIn.value = 25.833f;
-            channelMixer.greenOutGreenIn.value = 74.167f;
-            channelMixer.greenOutBlueIn.value = 0f;
+            channelMixerData.greenOutRedIn = 25.833f;
+            channelMixerData.greenOutGreenIn = 74.167f;
+            channelMixerData.greenOutBlueIn = 0f;
 
-            channelMixer.blueOutRedIn.value = 0f;
-            channelMixer.blueOutGreenIn.value = 14.167f;
-            channelMixer.blueOutBlueIn.value = 85.833f;
+            channelMixerData.blueOutRedIn = 0f;
+            channelMixerData.blueOutGreenIn = 14.167f;
+            channelMixerData.blueOutBlueIn = 85.833f;
         }
 
         public static void ApplyDeuteranomalyCorrection()
         {
             // Deuteranomaly (Weak green perception) - Anomalous M-cones
             // Most common form of color blindness - milder correction
-            channelMixer.redOutRedIn.value = 80f;
-            channelMixer.redOutGreenIn.value = 20f;
-            channelMixer.redOutBlueIn.value = 0f;
+            channelMixerData.redOutRedIn = 80f;
+            channelMixerData.redOutGreenIn = 20f;
+            channelMixerData.redOutBlueIn = 0f;
 
-            channelMixer.greenOutRedIn.value = 25.833f;
-            channelMixer.greenOutGreenIn.value = 74.167f;
-            channelMixer.greenOutBlueIn.value = 0f;
+            channelMixerData.greenOutRedIn = 25.833f;
+            channelMixerData.greenOutGreenIn = 74.167f;
+            channelMixerData.greenOutBlueIn = 0f;
 
-            channelMixer.blueOutRedIn.value = 0f;
-            channelMixer.blueOutGreenIn.value = 14.167f;
-            channelMixer.blueOutBlueIn.value = 85.833f;
+            channelMixerData.blueOutRedIn = 0f;
+            channelMixerData.blueOutGreenIn = 14.167f;
+            channelMixerData.blueOutBlueIn = 85.833f;
         }
 
         public static void ApplyTritanomalyCorrection()
         {
             // Tritanomaly (Weak blue perception) - Anomalous S-cones
             // Milder correction than full tritanopia
-            channelMixer.redOutRedIn.value = 96.667f;
-            channelMixer.redOutGreenIn.value = 3.333f;
-            channelMixer.redOutBlueIn.value = 0f;
+            channelMixerData.redOutRedIn = 96.667f;
+            channelMixerData.redOutGreenIn = 3.333f;
+            channelMixerData.redOutBlueIn = 0f;
 
-            channelMixer.greenOutRedIn.value = 0f;
-            channelMixer.greenOutGreenIn.value = 73.333f;
-            channelMixer.greenOutBlueIn.value = 26.667f;
+            channelMixerData.greenOutRedIn = 0f;
+            channelMixerData.greenOutGreenIn = 73.333f;
+            channelMixerData.greenOutBlueIn = 26.667f;
 
-            channelMixer.blueOutRedIn.value = 0f;
-            channelMixer.blueOutGreenIn.value = 18.333f;
-            channelMixer.blueOutBlueIn.value = 81.667f;
+            channelMixerData.blueOutRedIn = 0f;
+            channelMixerData.blueOutGreenIn = 18.333f;
+            channelMixerData.blueOutBlueIn = 81.667f;
         }
 
         public static void ApplyMonochromacyCorrection()
@@ -229,52 +151,52 @@ namespace QM_ColorBlindHelper
             float blueLuma = 11.4f;
 
             // Apply same luminance calculation to all channels
-            channelMixer.redOutRedIn.value = redLuma;
-            channelMixer.redOutGreenIn.value = greenLuma;
-            channelMixer.redOutBlueIn.value = blueLuma;
+            channelMixerData.redOutRedIn = redLuma;
+            channelMixerData.redOutGreenIn = greenLuma;
+            channelMixerData.redOutBlueIn = blueLuma;
 
-            channelMixer.greenOutRedIn.value = redLuma;
-            channelMixer.greenOutGreenIn.value = greenLuma;
-            channelMixer.greenOutBlueIn.value = blueLuma;
+            channelMixerData.greenOutRedIn = redLuma;
+            channelMixerData.greenOutGreenIn = greenLuma;
+            channelMixerData.greenOutBlueIn = blueLuma;
 
-            channelMixer.blueOutRedIn.value = redLuma;
-            channelMixer.blueOutGreenIn.value = greenLuma;
-            channelMixer.blueOutBlueIn.value = blueLuma;
+            channelMixerData.blueOutRedIn = redLuma;
+            channelMixerData.blueOutGreenIn = greenLuma;
+            channelMixerData.blueOutBlueIn = blueLuma;
 
             // Also boost contrast for monochromacy to help distinguish elements
-            colorAdjustments.contrast.value += 25f; // Extra contrast boost
-            colorAdjustments.contrast.overrideState = true;
+            colorAdjustmentsData.contrast += 25f; // Extra contrast boost
+            colorAdjustmentsData.contrastOverrideState = true;
         }
 
         public static void ApplyCustomCorrection(ModConfig config)
         {
             // Use custom multipliers and mixing from config
-            channelMixer.redOutRedIn.value = config.RedOutRedIn;
-            channelMixer.redOutGreenIn.value = config.RedOutGreenIn;
-            channelMixer.redOutBlueIn.value = config.RedOutBlueIn;
+            channelMixerData.redOutRedIn = config.RedOutRedIn;
+            channelMixerData.redOutGreenIn = config.RedOutGreenIn;
+            channelMixerData.redOutBlueIn = config.RedOutBlueIn;
 
-            channelMixer.greenOutRedIn.value = config.GreenOutRedIn;
-            channelMixer.greenOutGreenIn.value = config.GreenOutGreenIn;
-            channelMixer.greenOutBlueIn.value = config.GreenOutBlueIn;
+            channelMixerData.greenOutRedIn = config.GreenOutRedIn;
+            channelMixerData.greenOutGreenIn = config.GreenOutGreenIn;
+            channelMixerData.greenOutBlueIn = config.GreenOutBlueIn;
 
-            channelMixer.blueOutRedIn.value = config.BlueOutRedIn;
-            channelMixer.blueOutGreenIn.value = config.BlueOutGreenIn;
-            channelMixer.blueOutBlueIn.value = config.BlueOutBlueIn;
+            channelMixerData.blueOutRedIn = config.BlueOutRedIn;
+            channelMixerData.blueOutGreenIn = config.BlueOutGreenIn;
+            channelMixerData.blueOutBlueIn = config.BlueOutBlueIn;
         }
 
         public static void EnableAllChannelMixerOverrides()
         {
-            channelMixer.redOutRedIn.overrideState = true;
-            channelMixer.redOutGreenIn.overrideState = true;
-            channelMixer.redOutBlueIn.overrideState = true;
+            channelMixerData.redOutRedInOverrideState = true;
+            channelMixerData.redOutGreenInOverrideState = true;
+            channelMixerData.redOutBlueInOverrideState = true;
 
-            channelMixer.greenOutRedIn.overrideState = true;
-            channelMixer.greenOutGreenIn.overrideState = true;
-            channelMixer.greenOutBlueIn.overrideState = true;
+            channelMixerData.greenOutRedInOverrideState = true;
+            channelMixerData.greenOutGreenInOverrideState = true;
+            channelMixerData.greenOutBlueInOverrideState = true;
 
-            channelMixer.blueOutRedIn.overrideState = true;
-            channelMixer.blueOutGreenIn.overrideState = true;
-            channelMixer.blueOutBlueIn.overrideState = true;
+            channelMixerData.blueOutRedInOverrideState = true;
+            channelMixerData.blueOutGreenInOverrideState = true;
+            channelMixerData.blueOutBlueInOverrideState = true;
         }
 
         public static void ApplyColorBlindCorrection(ColorBlindType colorBlindType)
@@ -329,19 +251,193 @@ namespace QM_ColorBlindHelper
         public static void ApplyColorBlindSettings()
         {
             // Apply basic color adjustments
-            colorAdjustments.contrast.value = Plugin.Config.Contrast;
-            colorAdjustments.saturation.value = Plugin.Config.Saturation;
-            colorAdjustments.hueShift.value = Plugin.Config.HueShift;
-            colorAdjustments.postExposure.value = Plugin.Config.Exposure;
+            colorAdjustmentsData.contrast = Plugin.Config.Contrast;
+            colorAdjustmentsData.saturation = Plugin.Config.Saturation;
+            colorAdjustmentsData.hueShift = Plugin.Config.HueShift;
+            colorAdjustmentsData.postExposure = Plugin.Config.Exposure;
 
             // Enable the adjustments
-            colorAdjustments.contrast.overrideState = true;
-            colorAdjustments.saturation.overrideState = true;
-            colorAdjustments.hueShift.overrideState = true;
-            colorAdjustments.postExposure.overrideState = true;
+            colorAdjustmentsData.contrastOverrideState = true;
+            colorAdjustmentsData.saturationOverrideState = true;
+            colorAdjustmentsData.hueShiftOverrideState = true;
+            colorAdjustmentsData.postExposureOverrideState = true;
 
             // Apply color blind specific correction
-            ApplyColorBlindCorrection((ColorBlindType)Plugin.Config.ColorBlindnessIndex);
+            ApplyColorBlindCorrection((ColorBlindType)Plugin.Config.ColorBlindIndex);
+        }
+    }
+
+    public class ColorAdjustmentsData
+    {
+        public float contrast;
+        public float saturation;
+        public float hueShift;
+        public float postExposure;
+        public bool contrastOverrideState;
+        public bool saturationOverrideState;
+        public bool hueShiftOverrideState;
+        public bool postExposureOverrideState;
+
+        public bool AreEqual(ColorAdjustmentsData a, ColorAdjustments b)
+        {
+            return (
+                contrast == b.contrast.value &&
+                saturation == b.saturation.value &&
+                hueShift == b.hueShift.value &&
+                postExposure == b.postExposure.value &&
+
+                contrastOverrideState == b.contrast.overrideState &&
+                saturationOverrideState == b.saturation.overrideState &&
+                hueShiftOverrideState == b.hueShift.overrideState &&
+                postExposureOverrideState == b.postExposure.overrideState);
+        }
+
+        public void CopyFrom(ColorAdjustmentsData source, ColorAdjustments destination)
+        {
+            destination.contrast.value = source.contrast;
+            destination.saturation.value = source.saturation;
+            destination.hueShift.value = source.hueShift;
+            destination.postExposure.value = source.postExposure;
+
+            destination.contrast.overrideState = source.contrastOverrideState;
+            destination.saturation.overrideState = source.saturationOverrideState;
+            destination.hueShift.overrideState = source.hueShiftOverrideState;
+            destination.postExposure.overrideState = source.postExposureOverrideState;
+        }
+    }
+
+    public class ChannelMixerData
+    {
+        public float redOutRedIn;
+        public float redOutGreenIn;
+        public float redOutBlueIn;
+
+        public float greenOutRedIn;
+        public float greenOutGreenIn;
+        public float greenOutBlueIn;
+
+        public float blueOutRedIn;
+        public float blueOutGreenIn;
+        public float blueOutBlueIn;
+
+        public bool redOutRedInOverrideState;
+        public bool redOutGreenInOverrideState;
+        public bool redOutBlueInOverrideState;
+        public bool greenOutRedInOverrideState;
+        public bool greenOutGreenInOverrideState;
+        public bool greenOutBlueInOverrideState;
+        public bool blueOutRedInOverrideState;
+        public bool blueOutGreenInOverrideState;
+        public bool blueOutBlueInOverrideState;
+
+        public bool AreEqual(ChannelMixerData a, ChannelMixer b)
+        {
+            return (a.redOutRedIn == b.redOutRedIn.value &&
+                    a.redOutGreenIn == b.redOutGreenIn.value &&
+                    a.redOutBlueIn == b.redOutBlueIn.value &&
+
+                    a.greenOutRedIn == b.greenOutRedIn.value &&
+                    a.greenOutGreenIn == b.greenOutGreenIn.value &&
+                    a.greenOutBlueIn == b.greenOutBlueIn.value &&
+
+                    a.blueOutRedIn == b.blueOutRedIn.value &&
+                    a.blueOutGreenIn == b.blueOutGreenIn.value &&
+                    a.blueOutBlueIn == b.blueOutBlueIn.value &&
+
+                    a.redOutRedInOverrideState == b.redOutRedIn.overrideState &&
+                    a.redOutGreenInOverrideState == b.redOutGreenIn.overrideState &&
+                    a.redOutBlueInOverrideState == b.redOutBlueIn.overrideState &&
+
+                    a.greenOutRedInOverrideState == b.greenOutRedIn.overrideState &&
+                    a.greenOutGreenInOverrideState == b.greenOutGreenIn.overrideState &&
+                    a.greenOutBlueInOverrideState == b.greenOutBlueIn.overrideState &&
+
+                    a.blueOutRedInOverrideState == b.blueOutRedIn.overrideState &&
+                    a.blueOutGreenInOverrideState == b.blueOutGreenIn.overrideState &&
+                    a.blueOutBlueInOverrideState == b.blueOutBlueIn.overrideState
+                    );
+        }
+
+        public bool AreEqual(ChannelMixerData a, ChannelMixerData b)
+        {
+            return (a.redOutRedIn == b.redOutRedIn &&
+                    a.redOutGreenIn == b.redOutGreenIn &&
+                    a.redOutBlueIn == b.redOutBlueIn &&
+
+                    a.greenOutRedIn == b.greenOutRedIn &&
+                    a.greenOutGreenIn == b.greenOutGreenIn &&
+                    a.greenOutBlueIn == b.greenOutBlueIn &&
+
+                    a.blueOutRedIn == b.blueOutRedIn &&
+                    a.blueOutGreenIn == b.blueOutGreenIn &&
+                    a.blueOutBlueIn == b.blueOutBlueIn &&
+
+                    a.redOutRedInOverrideState == b.redOutRedInOverrideState &&
+                    a.redOutGreenInOverrideState == b.redOutGreenInOverrideState &&
+                    a.redOutBlueInOverrideState == b.redOutBlueInOverrideState &&
+
+                    a.greenOutRedInOverrideState == b.greenOutRedInOverrideState &&
+                    a.greenOutGreenInOverrideState == b.greenOutGreenInOverrideState &&
+                    a.greenOutBlueInOverrideState == b.greenOutBlueInOverrideState &&
+
+                    a.blueOutRedInOverrideState == b.blueOutRedInOverrideState &&
+                    a.blueOutGreenInOverrideState == b.blueOutGreenInOverrideState &&
+                    a.blueOutBlueInOverrideState == b.blueOutBlueInOverrideState
+                    );
+        }
+
+        public void CopyFrom(ChannelMixerData source, ChannelMixer destination)
+        {
+            destination.redOutRedIn.value = source.redOutRedIn;
+            destination.redOutGreenIn.value = source.redOutGreenIn;
+            destination.redOutBlueIn.value = source.redOutBlueIn;
+
+            destination.greenOutRedIn.value = source.greenOutRedIn;
+            destination.greenOutGreenIn.value = source.greenOutGreenIn;
+            destination.greenOutBlueIn.value = source.greenOutBlueIn;
+
+            destination.blueOutRedIn.value = source.blueOutRedIn;
+            destination.blueOutGreenIn.value = source.blueOutGreenIn;
+            destination.blueOutBlueIn.value = source.blueOutBlueIn;
+
+            destination.redOutRedIn.overrideState = source.redOutRedInOverrideState;
+            destination.redOutGreenIn.overrideState = source.redOutGreenInOverrideState;
+            destination.redOutBlueIn.overrideState = source.redOutBlueInOverrideState;
+
+            destination.greenOutRedIn.overrideState = source.greenOutRedInOverrideState;
+            destination.greenOutGreenIn.overrideState = source.greenOutGreenInOverrideState;
+            destination.greenOutBlueIn.overrideState = source.greenOutBlueInOverrideState;
+
+            destination.blueOutRedIn.overrideState = source.blueOutRedInOverrideState;
+            destination.blueOutGreenIn.overrideState = source.blueOutGreenInOverrideState;
+            destination.blueOutBlueIn.overrideState = source.blueOutBlueInOverrideState;
+        }
+
+        public void CopyFrom(ChannelMixerData source, ChannelMixerData destination)
+        {
+            destination.redOutRedIn = source.redOutRedIn;
+            destination.redOutGreenIn = source.redOutGreenIn;
+            destination.redOutBlueIn = source.redOutBlueIn;
+
+            destination.greenOutRedIn = source.greenOutRedIn;
+            destination.greenOutGreenIn = source.greenOutGreenIn;
+            destination.greenOutBlueIn = source.greenOutBlueIn;
+
+            destination.blueOutRedIn = source.blueOutRedIn;
+            destination.blueOutGreenIn = source.blueOutGreenIn;
+            destination.blueOutBlueIn = source.blueOutBlueIn;
+
+            destination.redOutRedInOverrideState = source.redOutRedInOverrideState;
+            destination.redOutGreenInOverrideState = source.redOutGreenInOverrideState;
+            destination.redOutBlueInOverrideState = source.redOutBlueInOverrideState;
+
+            destination.greenOutRedInOverrideState = source.greenOutRedInOverrideState;
+            destination.greenOutGreenInOverrideState = source.greenOutGreenInOverrideState;
+            destination.greenOutBlueInOverrideState = source.greenOutBlueInOverrideState;
+
+            destination.blueOutRedInOverrideState = source.blueOutRedInOverrideState;
+            destination.blueOutGreenInOverrideState = source.blueOutGreenInOverrideState;
+            destination.blueOutBlueInOverrideState = source.blueOutBlueInOverrideState;
         }
     }
 

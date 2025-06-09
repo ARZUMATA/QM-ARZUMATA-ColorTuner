@@ -46,7 +46,7 @@ namespace QM_ColorBlindHelper
             }
             catch (Exception)
             {
-                Debug.LogWarning("Loading without MCM.");
+                Plugin.Logger.LogWarning("Loading without MCM.");
                 flag = false;
                 text = string.Empty;
             }

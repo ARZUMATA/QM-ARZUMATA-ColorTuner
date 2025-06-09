@@ -11,7 +11,6 @@ namespace QM_ColorBlindHelper
         private Volume postProcessVolume;
         private VolumeProfile profile;
         private bool setupComplete = false;
-        public bool needUpdate = true;
         public ChannelMixer channelMixer;
         public ColorAdjustments colorAdjustments;
         private static float lastUpdateTime = 0f;
@@ -44,8 +43,10 @@ namespace QM_ColorBlindHelper
 
                 // Create a post-process volume for color adjustments
                 GameObject colorBlindVolumeGameObject = new GameObject("ColorBlind Volume");
-                colorBlindVolumeGameObject.transform.SetParent(transform);
-
+                // Don't parent it to the camera, make it independent
+                // This prevents issues if the camera gets destroyed
+                DontDestroyOnLoad(colorBlindVolumeGameObject);
+                
                 postProcessVolume = colorBlindVolumeGameObject.AddComponent<Volume>();
                 postProcessVolume.isGlobal = true;
                 postProcessVolume.priority = 10;
@@ -72,27 +73,18 @@ namespace QM_ColorBlindHelper
         {
             if (setupComplete && enabled)
             {
-                postProcessVolume.enabled = true;
-
                 if ((ColorTuner.currentTime - lastUpdateTime) >= ColorTuner.updateInterval)
                 {
-                    if (!ColorBlindHelper.AreEqual(channelMixer, ColorBlindHelper.channelMixer))
+                    if (!ColorBlindHelper.channelMixerData.AreEqual(ColorBlindHelper.channelMixerData, channelMixer))
                     {
-                        ColorBlindHelper.CopyFrom(ColorBlindHelper.channelMixer, channelMixer);
-                        needUpdate = true;
+                        ColorBlindHelper.channelMixerData.CopyFrom(ColorBlindHelper.channelMixerData, channelMixer);
                     }
 
-                    if (!ColorBlindHelper.AreEqual(colorAdjustments, ColorBlindHelper.colorAdjustments))
+                    if (!ColorBlindHelper.colorAdjustmentsData.AreEqual(ColorBlindHelper.colorAdjustmentsData, colorAdjustments))
                     {
-                        ColorBlindHelper.CopyFrom(ColorBlindHelper.colorAdjustments, colorAdjustments);
-                        needUpdate = true;
+                        ColorBlindHelper.colorAdjustmentsData.CopyFrom(ColorBlindHelper.colorAdjustmentsData, colorAdjustments);
                     }
                 }
-            }
-            else if (setupComplete && !enabled)
-            {
-                // Disable the volume when not needed
-                postProcessVolume.enabled = false;
             }
         }
 

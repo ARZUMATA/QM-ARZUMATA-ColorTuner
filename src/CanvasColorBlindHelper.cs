@@ -13,7 +13,7 @@ namespace QM_ColorBlindHelper
         private Dictionary<string, SpriteContainer> spriteTextureCache = new Dictionary<string, SpriteContainer>();
         private Dictionary<int, ImageContainer> containers = new Dictionary<int, ImageContainer>();
         public bool needUpdate = false;
-        public ChannelMixer channelMixer = new ChannelMixer();
+        public ChannelMixerData channelMixerdata = new ChannelMixerData();
         private static float lastUpdateTime = 0f;
 
         internal class ImageContainer
@@ -53,9 +53,9 @@ namespace QM_ColorBlindHelper
         {
             if (enabled)
             {
-                if (!ColorBlindHelper.AreEqual(channelMixer, ColorBlindHelper.channelMixer))
+                if (!ColorBlindHelper.channelMixerData.AreEqual(ColorBlindHelper.channelMixerData, channelMixerdata))
                 {
-                    ColorBlindHelper.CopyFrom(ColorBlindHelper.channelMixer, channelMixer);
+                    ColorBlindHelper.channelMixerData.CopyFrom(ColorBlindHelper.channelMixerData, channelMixerdata);
                     needUpdate = true;
                 }
 
@@ -237,13 +237,13 @@ namespace QM_ColorBlindHelper
             // Each output channel is a combination of all input channels
             Vector3 transformedRgb = new Vector3(
                 // Red output = (red input * redOutRedIn) + (green input * redOutGreenIn) + (blue input * redOutBlueIn)
-                (rgb.x * (float)channelMixer.redOutRedIn / 100f) + (rgb.y * (float)channelMixer.redOutGreenIn / 100f) + (rgb.z * (float)channelMixer.redOutBlueIn / 100f),
+                (rgb.x * (float)channelMixerdata.redOutRedIn / 100f) + (rgb.y * (float)channelMixerdata.redOutGreenIn / 100f) + (rgb.z * (float)channelMixerdata.redOutBlueIn / 100f),
 
                 // Green output = (red input * greenOutRedIn) + (green input * greenOutGreenIn) + (blue input * greenOutBlueIn)
-                (rgb.x * (float)channelMixer.greenOutRedIn / 100f) + (rgb.y * (float)channelMixer.greenOutGreenIn / 100f) + (rgb.z * (float)channelMixer.greenOutBlueIn / 100f),
+                (rgb.x * (float)channelMixerdata.greenOutRedIn / 100f) + (rgb.y * (float)channelMixerdata.greenOutGreenIn / 100f) + (rgb.z * (float)channelMixerdata.greenOutBlueIn / 100f),
 
                 // Blue output = (red input * blueOutRedIn) + (green input * blueOutGreenIn) + (blue input * blueOutBlueIn)
-                (rgb.x * (float)channelMixer.blueOutRedIn / 100f) + (rgb.y * (float)channelMixer.blueOutGreenIn / 100f) + (rgb.z * (float)channelMixer.blueOutBlueIn / 100f)
+                (rgb.x * (float)channelMixerdata.blueOutRedIn / 100f) + (rgb.y * (float)channelMixerdata.blueOutGreenIn / 100f) + (rgb.z * (float)channelMixerdata.blueOutBlueIn / 100f)
             );
 
             return new Color(

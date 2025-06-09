@@ -21,7 +21,7 @@ namespace QM_ColorBlindHelper
         [Hook(ModHookType.DungeonStarted)]
         public static void DungeonStarted(IModContext context)
         {
-            enabled = true;
+            enabled = Plugin.Config.EnableColorTuner;
             lastUpdateTime = 0f; // Reset timer
         }
 
@@ -31,7 +31,6 @@ namespace QM_ColorBlindHelper
             enabled = false;
             isInitialized = false;
             canvasColorBlindHelper.enabled = false;
-            colorBlindComponent.enabled = false;
             lastUpdateTime = 0f; // Reset timer
         }
 
@@ -39,7 +38,7 @@ namespace QM_ColorBlindHelper
         [Hook(ModHookType.SpaceStarted)]
         public static void SpaceStarted(IModContext context)
         {
-            enabled = true;
+            enabled = Plugin.Config.EnableColorTuner;
             lastUpdateTime = 0f; // Reset timer
         }
 
@@ -49,14 +48,13 @@ namespace QM_ColorBlindHelper
             enabled = false;
             isInitialized = false;
             canvasColorBlindHelper.enabled = false;
-            colorBlindComponent.enabled = false;
             lastUpdateTime = 0f; // Reset timer
         }
 
         [Hook(ModHookType.SpaceUpdateBeforeGameLoop)]
         public static void SpaceUpdateBeforeGameLoop(IModContext context)
         {
-            enabled = Plugin.Config.EnableColorBlindAssist;
+            enabled = Plugin.Config.EnableColorTuner;
             currentTime = Time.time;
 
             // Calculate time-based updates instead of frame-based
@@ -66,13 +64,13 @@ namespace QM_ColorBlindHelper
             {
                 if (enabled)
                 {
-                    colorBlindComponent.enabled = enabled;
-                    canvasColorBlindHelper.enabled = enabled;
+                    colorBlindComponent.enabled = true;
+                    canvasColorBlindHelper.enabled = true;
                 }
                 else
                 {
-                    colorBlindComponent.enabled = !enabled;
-                    canvasColorBlindHelper.enabled = !enabled;
+                    colorBlindComponent.enabled = false;
+                    canvasColorBlindHelper.enabled = false;
                 }
 
                 ColorBlindHelper.ApplyColorBlindSettings();
@@ -121,14 +119,10 @@ namespace QM_ColorBlindHelper
             }
         }
 
-
-
-
-
         [Hook(ModHookType.DungeonUpdateBeforeGameLoop)]
         public static void DungeonUpdateBeforeGameLoop(IModContext context)
         {
-            enabled = Plugin.Config.EnableColorBlindAssist;
+            enabled = Plugin.Config.EnableColorTuner;
             currentTime = Time.time;
 
             // Calculate time-based updates instead of frame-based
@@ -138,13 +132,13 @@ namespace QM_ColorBlindHelper
             {
                 if (enabled)
                 {
-                    colorBlindComponent.enabled = enabled;
-                    canvasColorBlindHelper.enabled = enabled;
+                    colorBlindComponent.enabled = true;
+                    canvasColorBlindHelper.enabled = true;
                 }
                 else
                 {
-                    colorBlindComponent.enabled = !enabled;
-                    canvasColorBlindHelper.enabled = !enabled;
+                    colorBlindComponent.enabled = false;
+                    canvasColorBlindHelper.enabled = false;
                 }
 
                 ColorBlindHelper.ApplyColorBlindSettings();
